@@ -1,6 +1,2 @@
 # scrapyard
-scrapyard lisbon!!
-
-
-
-hi
+scrapyard lisbon
