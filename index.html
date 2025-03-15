@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Password Manager</h1>
+      <div id="login-container">
+        <label for="login-password">Enter Password:</label>
+        <input type="password" id="login-password" required />
+        <button onclick="login()">Login</button>
+      </div>
+      <div id="password-container" style="display: none">
+        <label for="set-password">Set Password:</label>
+        <input type="password" id="set-password" required />
+        <button onclick="setPassword()">Set</button>
+      </div>
+      <div id="credentials-container" style="display: none">
+        <h2>Stored Credentials</h2>
+        <ul id="credentials-list"></ul>
+      </div>
+      <div id="add-credentials-container" style="display: none">
+        <h2>Add Credentials</h2>
+        <label for="platform">Platform:</label>
+        <input type="text" id="platform" required />
+        <label for="username">Username:</label>
+        <input type="text" id="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+        <button onclick="saveCredentials()">Save</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
