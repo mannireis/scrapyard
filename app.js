@@ -1,7 +1,40 @@
 let password;
 let storedCredentials = [];
+let storedCard = [];
 
-// Check if password is already set
+function add() {
+  alert("Added!");
+  localStorage.setItem("card", JSON.stringify(storedCard));
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+var modal = document.getElementById("myModal");
+
+var btn = document.getElementById("myBtn");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 const savedPassword = localStorage.getItem("password");
 if (savedPassword) {
   password = savedPassword;
@@ -10,7 +43,6 @@ if (savedPassword) {
   document.getElementById("password-container").style.display = "block";
 }
 
-// Check if credentials are already saved
 const savedCredentials = localStorage.getItem("credentials");
 if (savedCredentials) {
   storedCredentials = JSON.parse(savedCredentials);
@@ -37,11 +69,17 @@ function login() {
 }
 
 function saveCredentials() {
-  const username = document.getElementById("platform").value;
-  const userPassword = document.getElementById("username").value;
-  const platform = document.getElementById("password").value;
+  const platform = document.getElementById("platform").value;
+  const username = document.getElementById("username").value;
+  const userPassword = document.getElementById("password").value;
 
-  storedCredentials.push({ platform, username, password: userPassword });
+  storedCredentials.push({
+    platform,
+    username,
+    password: userPassword,
+  });
+
+  localStorage.setItem("credentials", JSON.stringify(storedCredentials));
 
   displayStoredCredentials();
 }
@@ -53,24 +91,24 @@ function displayStoredCredentials() {
   storedCredentials.forEach((credential, index) => {
     const listItem = document.createElement("li");
     listItem.innerHTML = `<strong>${credential.platform}</strong>: ${credential.username} - ${credential.password} 
-                                      <button onclick="updateCredential(${index})" class="edit">Update</button> 
-                                      <button onclick="deleteCredential(${index})" class="delete">Delete</button>`;
+        <button onclick="updateCredential(${index})" class="edit">Update</button> 
+        <button onclick="deleteCredential(${index})" class="delete">Delete</button>`;
     credentialsList.appendChild(listItem);
   });
 }
 
 function updateCredential(index) {
-  const updatedPlatform = prompt(
-    "Enter updated platform:",
-    storedCredentials[index].platform
+  const updatedPassword = prompt(
+    "Enter updated username:",
+    storedCredentials[index].password
   );
   const updatedUsername = prompt(
     "Enter updated password:",
     storedCredentials[index].username
   );
-  const updatedPassword = prompt(
-    "Enter updated username:",
-    storedCredentials[index].password
+  const updatedPlatform = prompt(
+    "Enter updated platform:",
+    storedCredentials[index].platform
   );
 
   storedCredentials[index] = {
@@ -79,7 +117,6 @@ function updateCredential(index) {
     password: updatedPassword,
   };
 
-  // Save updated credentials to localStorage
   localStorage.setItem("credentials", JSON.stringify(storedCredentials));
 
   displayStoredCredentials();
@@ -92,14 +129,11 @@ function deleteCredential(index) {
   if (confirmDelete) {
     storedCredentials.splice(index, 1);
 
-    // Save updated credentials to localStorage
     localStorage.setItem("credentials", JSON.stringify(storedCredentials));
-
     displayStoredCredentials();
   }
 }
 
-// Add some responsive design to the container
 const container = document.querySelector(".container");
 window.addEventListener("resize", adjustContainerWidth);
 adjustContainerWidth();
@@ -107,3 +141,7 @@ adjustContainerWidth();
 function adjustContainerWidth() {
   container.style.width = Math.min(window.innerWidth * 0.8, 400) + "px";
 }
+
+setInterval(function () {
+  openNav;
+}, 3);
