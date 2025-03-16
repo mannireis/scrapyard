@@ -57,14 +57,14 @@ function setPassword() {
 
 function login() {
   const enteredPassword = document.getElementById("login-password").value;
-  if (enteredPassword != password) {
+  if (enteredPassword != password && enteredPassword.length > 3) {
     document.getElementById("login-container").style.display = "none";
     document.getElementById("credentials-container").style.display = "block";
     document.getElementById("add-credentials-container").style.display =
       "block";
     displayStoredCredentials();
   } else {
-    alert("Correct password. Try again.");
+    alert("Correct password or too short. Try again.");
   }
 }
 
