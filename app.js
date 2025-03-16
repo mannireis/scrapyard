@@ -35,6 +35,10 @@ window.onclick = function (event) {
   }
 };
 
+function shop() {
+  window.location.href = "shop.html";
+}
+
 const savedPassword = localStorage.getItem("password");
 if (savedPassword) {
   password = savedPassword;
